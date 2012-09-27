@@ -26,8 +26,8 @@
 
 				<div class="nav-collapse">
 					<ul class="nav">
-						<li class="active"><a href="index.html">Home</a></li>
-						<li><a href="add.html">Add Tip</a></li>
+						<li><a href="index.html">Home</a></li>
+						<li class="active"><a href="add.html">Add Tip</a></li>
 						<li><a href="get.html">Get Tips</a></li>
 					</ul>
 				</div>
@@ -38,14 +38,24 @@
 
 	<div class="container">
 
-		<img src="images/ctl.png" title="CowTipLine">
-		<p>
-			Tipping Cows? Need to find a cow? Welcome to 
-			the app that hooks you up!
-		</p>
+		<form id="addtipForm">
 
-		<a href="add.html" class="btn btn-block">Add Tip</a>
-		<a href="get.html" class="btn btn-block">Get Tips</a>
+			<label for="numcows">How many cows?</label>
+			<input type="number" id="numcows" class="input-xlarge" placeholder="Enter the number of cows">
+
+			<label for="howdangerous">How dangerous?</label>
+			<select id="howdangerous" class="input-xlarge">
+				<option value="1">Totally Safe</option>
+				<option value="2">Some Risk</option>
+				<option value="3">Farmer with Shotgun!</option>
+			</select>
+
+			<label for="comments">Anything else?</label>
+			<textarea id="comments" class="input-xlarge"></textarea>
+
+			<input type="submit" class="btn btn-block btn-primary" value="Send Tip">
+
+		</form>
 
 	</div>
 
