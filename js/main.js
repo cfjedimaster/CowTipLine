@@ -80,18 +80,22 @@ $(document).ready(function() {
 function renderResults(results,myLoc) {
 	console.log("renderResults: "+results.length);
 
-	$("#tipdisplay").html("Displaying tips within 30 miles and from the last 7 days.");
+	if(results.length) {
+		$("#tipdisplay").html("Displaying tips within 30 miles and from the last 7 days.");
 
-	var map = L.map('map').setView([myLoc.latitude, myLoc.longitude], 8);
-	var layerOpenStreet = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:18, minZoom:1, attribution:'Map data &copy; 2012 OpenStreetMap'}).addTo(map);
-	var dangerLevels = ["Totally Safe","Some Risk","Farmer with Shotgun!"];
+		var map = L.map('map').setView([myLoc.latitude, myLoc.longitude], 8);
+		var layerOpenStreet = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:18, minZoom:1, attribution:'Map data &copy; 2012 OpenStreetMap'}).addTo(map);
+		var dangerLevels = ["Totally Safe","Some Risk","Farmer with Shotgun!"];
 
-	for(var i=0, len=results.length; i<len; i++) {
-		var result = results[i];
-		var marker = L.marker([result.attributes.location.latitude, result.attributes.location.longitude]).addTo(map);
-		var markerLabel = "Cows: "+result.attributes.numcows+"<br/>Danger: "+dangerLevels[result.attributes.howdangerous-1];
-		if(result.attributes.comments && result.attributes.comments.length) markerLabel += "<br>"+result.attributes.comments;
-		marker.bindPopup(markerLabel);
+		for(var i=0, len=results.length; i<len; i++) {
+			var result = results[i];
+			var marker = L.marker([result.attributes.location.latitude, result.attributes.location.longitude]).addTo(map);
+			var markerLabel = "Cows: "+result.attributes.numcows+"<br/>Danger: "+dangerLevels[result.attributes.howdangerous-1];
+			if(result.attributes.comments && result.attributes.comments.length) markerLabel += "<br>"+result.attributes.comments;
+			marker.bindPopup(markerLabel);
+		}
+	} else {
+		$("#tipdisplay").html("I'm sorry, but I couldn't find any tips within 30 miles and from the past 7 days.");
 	}
 }
 
