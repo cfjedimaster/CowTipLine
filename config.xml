@@ -18,4 +18,6 @@
 
     <feature name="http://api.phonegap.com/1.0/geolocation"/>
 
+    <icon src="icons/rays_cow_57.png" width="57" height="57" />
+
 </widget>
